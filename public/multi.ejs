@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<%- include('./head')%>
+
+  <body class="body">
+    <%- include('./nav') %>
+      <div class="row mt-3">
+        <div class="col-2">
+        </div>
+        <div class="text-start col-4">
+          <a href="/stats" class="text-warning">Stats</a>
+          <div class="col-4">
+            <table class="col-8 text-info table table-bordered  mt-3">
+              <thead>
+                <tr>
+                  <th scope="col-1">#</th>
+                  <th scope="col-1">tablename</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <%for(let i=0; i < tables.length; i++){%>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>
+                      <a href="/multi/<%=tables[i]['id']%>" class="text-warning">
+                        <%=tables[i]['tablename']%>
+                      </a>
+                    </td>
+                  </tr>
+                  <%}%>
+              </tbody>
+            </table>
+
+            <div class="row mt-3">
+              <div class="col-2">
+              </div>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                Newtable
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input id="text" class="form-control" placeholder="Enter Table Name" type="text">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="create" type="button" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+
+        const myModalAlternative = new bootstrap.Modal('#myModal',{})
+        let create = document.querySelector('#create')
+        let text = document.querySelector('#text')
+        create.onclick = function () {
+          let res = text.value
+          axios.post('/newtable', { tablename: res })
+            .then((response) => {
+              myModalAlternative.hide()
+              console.log(response.data)
+            })
+            .catch(function (error) {
+              console.log('danger')
+            });
+            
+        }
+      </script>
+
+  </body>
+
+</html>

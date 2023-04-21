@@ -1,0 +1,26 @@
+const { request } = require('http');
+
+const appRoot = require('app-root-path')['path'];
+
+const path = require('path'),
+    multi = path.join(appRoot, "public", 'multi.ejs');
+
+
+//const statsR = (stat_service, render) => {
+  //  return (fastify, _, done) => {
+
+        fastify.get('/multi', async (request, reply) => {
+            let key = request.session.userid
+            
+            let result = await stat_service.result(key)
+            let st = await render.render(multi, request, { result })
+            return reply.code(200).type('text/html').send(st)
+        })
+
+
+        done();
+   // }
+
+//};
+
+//module.exports = { statsR }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<%- include('./head')%>
+
+  <body class="body">
+    <%- include('./nav') %>
+      <div class="row mt-3">
+        <div class="col-2">
+        </div>
+        <div class="text-start col-4">
+          <div id="result"></div>
+          <div class="row mt-3">
+            <div class="form-floating mb-3">
+
+              <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button id="more" type="button" class="btn btn-danger">More</button>
+                <button id="refresh" type="button" class="btn btn-success">Refresh</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <script>
+        let div = document.querySelector('#result');
+        let more = document.querySelector('#more')
+        let refresh = document.querySelector('#refresh')
+
+        let flag = false;
+        more.onclick = function () {
+          if(flag){
+            div.innerHTML = ''
+            getCard()
+          }
+          getCard()
+          
+          flag =false;
+        }
+        
+        refresh.onclick = function () {
+          axios.get('/finish')
+          .then((response) => {
+            div.innerHTML +=response.data.str;
+            flag = true;
+            
+          })
+          .catch(function (error) {
+              alert(alertPlaceholder, error.response.data.message, 'danger')
+            });
+          }
+         
+        let getCard = function () {
+          axios.get('/newcard')
+            .then((response) => {
+              div.innerHTML += response.data.title;
+            })
+            .catch(function (error) {
+              alert(alertPlaceholder, error.response.data.message, 'danger')
+            });
+
+        }
+
+        getCard()
+        getCard()
+
+      </script>
+
+  </body>
+
+</html>

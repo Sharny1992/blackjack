@@ -1,0 +1,25 @@
+.content-left {
+  margin: 0;
+  padding: 20px 0;
+align-content:start;
+
+}
+.content-justify {
+  text-align: justify;
+  
+}
+hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  opacity: 0.25;
+}
+body,html{
+  margin:0;
+  width:100%;
+  background-color: antiquewhite !important;
+}
+
+html{
+    background-color: antiquewhite;
+}

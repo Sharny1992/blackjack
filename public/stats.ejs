@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<%- include('./head')%>
+
+  <body class="body">
+    <%- include('./nav') %>
+      <div class="float-centr  row-1 mt-3">
+        <p class=" text-warning text-center">STATS</p>
+      </div>
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <table class="col-8 text-info table table-bordered  mt-3">
+            <thead>
+              <tr>
+                <th scope="col-1">#</th>
+                <th scope="col-1">USERID</th>
+                <th scope="col-1">WIN</th>
+                <th scope="col-1">LOSE</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <%for(let i=0; i < result.length; i++){%>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>
+                    <%=result[i]['username']%>
+                  </td>
+                  <td>
+                    <%=result[i]['win']%>
+                  </td>
+                  <td class="text-danger">
+                    <%=result[i]['lose']%>
+                  </td>
+                </tr>
+                <%}%>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+      <script>
+
+
+      </script>
+
+  </body>
+
+</html>

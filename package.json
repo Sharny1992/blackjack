@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "app-root-path": "^3.1.0",
+    "ejs": "^3.1.9",
+    "fastify": "^4.15.0",
+    "fastify-cookie": "^5.7.0",
+    "fastify-session": "^5.2.1",
+    "knex": "^2.4.2",
+    "pg": "^8.10.0",
+    "sqlite3": "^5.1.6"
+  }
+}

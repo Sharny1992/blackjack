@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<%- include('./head')%>
+
+  <body class="body">
+    <%- include('./nav') %>
+      <div class="row mt-3">
+        <div class="col-2">
+        </div>
+        <div class="text-start col-4">
+          <a href="/stats" class="text-warning">Stats</a>
+          
+          <div class="row mt-3">
+            <%=table%>
+          </div>
+          <div class="col-8">
+            
+            <table class="col-8 text-info table table-bordered  mt-3">
+              <thead>
+                <tr>
+                  <th scope="col-1">userid</th>
+                  <th scope="col-1">username</th>
+                  
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <%for(let i = 0; i < users.length; i++){%>
+                  <tr>
+                    <th scope="row"><%=users[i].id%></th>
+                    <td>
+                      <%=users[i].username%>
+                    </td>
+                  </tr>
+                  <%}%>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="row mt-3">
+            <div class="col-2">
+            </div>
+            <div class="text-start col-4">
+              <div id="result"></div>
+              <div class="row mt-3">
+                <div class="form-floating mb-3">
+    
+                  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button id="more" type="button" class="btn btn-danger">More</button>
+                    <button id="refresh" type="button" class="btn btn-success">Refresh</button>
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+        <script>
+           let div = document.querySelector('#result');
+        let more = document.querySelector('#more')
+        let refresh = document.querySelector('#refresh')
+
+        let flag = false;
+        more.onclick = function () {
+          if(flag){
+            div.innerHTML = ''
+            getCard()
+          }
+          getCard()
+          
+          flag =false;
+        }
+        
+        refresh.onclick = function () {
+          axios.get('/finish')
+          .then((response) => {
+            div.innerHTML +=response.data.str;
+            flag = true;
+            
+          })
+          .catch(function (error) {
+              alert(alertPlaceholder, error.response.data.message, 'danger')
+            });
+          }
+         
+        let getCard = function () {
+          axios.get('/newcard')
+            .then((response) => {
+              div.innerHTML += response.data.title;
+            })
+            .catch(function (error) {
+              alert(alertPlaceholder, error.response.data.message, 'danger')
+            });
+
+        }
+
+        getCard()
+        getCard()
+         
+        </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<%- include('./head')%>
+
+  <body class="body">
+    <%- include('./nav') %>
+      <div class="row mt-3">
+        <div class="col-2">
+        </div>
+        <div class="text-start col-4">
+          <a href="/stats" class="text-warning">Stats</a>
+          <div class="row mt-3">
+            <div class="btn-toolbar mb-3" role="toolbar">
+              <a href="/single" id="single" class="float-start btn btn-primary me-md-2" type="button">Single Player</a>
+            </div>
+            <div class="btn-toolbar justify-content-between">
+              <a href="/multi" id="multi" class="float-start btn btn-primary me-md-2" type="button">Multi Player</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+        <script>
+          let single = document.querySelector('#single');
+          let multi = document.querySelector('#multi');
+         
+        </script>
+
+  </body>
+
+</html>
